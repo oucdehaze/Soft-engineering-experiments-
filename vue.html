@@ -1,0 +1,68 @@
+components/Home.vue
+<template>
+<div id='back'>
+
+<el-container>
+  <el-aside width="400px">
+    <el-container class="con2">  
+      <el-header>图像去雾</el-header>
+      <el-main>去雾功能能够加强对比、增大反差、提高色彩饱和度、强调图片层次感，有效解决照片中的起雾现象。
+      </el-main>
+    </el-container>
+  </el-aside>
+
+  <el-main>
+
+  </el-main>
+</el-container>
+</div>
+</template>
+
+<script>
+
+</script>
+
+<style>
+  .el-aside {
+    background-color: transparent;
+    color: #333;
+    text-align: center;
+    line-height: 300px;
+    margin: 50px;
+  }
+  
+  .el-main {
+    background-color: transparent;
+    color: #333;
+    text-align: left;
+    line-height: 50px;
+    font-size: 30px;
+  }
+  
+  body{
+    margin: 0;
+    padding: 0;
+  }
+  body >.container{
+    margin: 0;
+    padding: 0;
+  }
+  .el-header{
+    color: #333;
+    background-color: transparent;;
+    font-size: 70px;
+    height: 150px !important;
+    margin-top: 0;
+    text-align: center;
+    line-height:150px;
+  }
+  #back{
+  width:100%;
+  height:100%;
+  position:fixed;
+  background-size:100% 100%;
+  }
+
+</style>
+<!--body 解决顶部留白问题-->
+<!-- back里面添加background-->
