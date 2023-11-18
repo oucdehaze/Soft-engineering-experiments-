@@ -1,0 +1,39 @@
+{
+    "model_algorithm": "image_dehaze",
+    "model_type": "Image",
+    "metrics": {
+        "f1": 0.345294,
+        "accuracy": 0.462963,
+        "precision": 0.338977,
+        "recall": 0.351852
+    },
+    "apis": [{
+        "url": "/",
+        "method": "post",
+        "request": {
+            "Content-type": "multipart/form-data",
+            "data": {
+                "type": "object",
+                "properties": {
+                    "images": {
+                        "type": "file"
+                    }
+                }
+            }
+        },
+        "response": {
+            "Content-type": "application/json",
+            "data": {
+                "type": "object",
+                "required": [
+                    "clean-images"
+                ],
+                "properties": {
+                    "clean-images": {
+                        "type": "file"
+                    }
+                }
+            }
+        }
+    }]
+}
