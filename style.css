@@ -1,24 +1,45 @@
 body{
+    position: relative;
     font-family: 'Roboto', sans-serif;;
     color: black;
     scroll-behavior: smooth;
     cursor:
-    url(data:cursor.png),auto !important;
+    url(/cursor.png),auto !important;
     margin: 0;
     padding: 0;
 }
-
+.container_new{
+    background-image: url(/6.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.background{
+    width: 100%;
+    height: 100%;
+}
+img {
+    max-width: 100%;
+    border-style: none;
+}
 .container{
     padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
+    min-height: 100%;
+    overflow: hidden;
     position: relative;
     background: linear-gradient(90deg,rgba(243, 85, 185, 0.048)15%,rgba(229, 96, 189, 0.116)30%,rgba(140, 23, 224, 0.062)50%,rgba(93, 106, 223, 0.075)70%,rgba(33, 197, 194, 0.089)90%,rgba(33, 197, 194, 0.132));
 }
+hr{
+    color: darkgrey;
+    background-color: aqua;
+}
 .container2{
     padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
+    min-height: 100%;
+    overflow: hidden;
     position: relative;
     background: linear-gradient(90deg,rgba(243, 85, 185, 0.048)15%,rgba(229, 96, 189, 0.116)30%,rgba(140, 23, 224, 0.062)50%,rgba(93, 106, 223, 0.075)70%,rgba(33, 197, 194, 0.089)90%,rgba(33, 197, 194, 0.132));
 }
@@ -32,11 +53,17 @@ p{
     text-align: center;
     font-size: 40px;
     font-weight: 500;
-    color:black;
+    color:mediumorchid;
+}
+.mytext{
+    margin: 0 auto;
+    margin-top: 15vh;
+    height: 80vh;
+    width: 60vw;
 }
 .image-container{
-    margin: 0 auto;
     margin-top: 8vh;
+    margin: 0 auto;
     height: 80vh;
     width: 60vw;
 }
@@ -54,7 +81,7 @@ p{
     width: 100%;
 }
 .uploadimage{
-    position: absolute;
+    position: relative;
     z-index: 1;
     height: 10vh;
     bottom: 15vh;
@@ -83,7 +110,7 @@ input{
     background-color: aqua;
 }
 
-#btnn{
+/*#btn{
     position: fixed;
     right: 30px;
     bottom: 30px;
@@ -93,4 +120,14 @@ input{
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 50% 50% 0 0;
+}*/
+.jiantou{
+    display:inline-block;
+    margin: 0;
+    width:2vw;
+    margin-left: 50vw;
+    margin-top: 2vh;
+}
+button{
+    display: none;
 }
