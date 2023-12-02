@@ -1,0 +1,254 @@
+body{
+    position: relative;
+    font-family: 'Roboto', sans-serif;;
+    color: black;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+.container_new{
+    background-image: url(/6.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment:fixed;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.container{
+    padding: 0;
+    min-height: 100%;
+    min-width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(90deg,rgba(243, 85, 185, 0.048)15%,rgba(229, 96, 189, 0.116)30%,rgba(140, 23, 224, 0.062)50%,rgba(93, 106, 223, 0.075)70%,rgba(33, 197, 194, 0.089)90%,rgba(33, 197, 194, 0.132));
+}
+
+.container2{
+    padding: 0;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(90deg,rgba(243, 85, 185, 0.048)15%,rgba(229, 96, 189, 0.116)30%,rgba(140, 23, 224, 0.062)50%,rgba(93, 106, 223, 0.075)70%,rgba(33, 197, 194, 0.089)90%,rgba(33, 197, 194, 0.132));
+
+}
+.nav-item{
+     position: relative;
+     right: 1vw;
+     margin: 1vw;
+}
+.navbar-nav {
+    float: right !important;
+}
+/*.navbar-nav>li{
+    float: right !important;
+}*/
+/*.header{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}*/
+.headertext{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    color:mediumorchid;
+}
+.mytext{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20vh;
+    height: 80vh;
+    width: 60vw;
+}
+.image-container{
+    background-color: white;
+    padding: 2vh;
+    margin-top: 8vh;
+    margin: 0 auto;
+    height: 40vh;
+    width: 60vw;
+}
+.p-img{
+    width: 50%; 
+    height: 100%;
+    margin-left: -6px;
+}
+.footer{
+    position: absolute;
+    z-index: 1;
+    height: 10vh;
+    bottom: 15vh;
+    left: 0;
+    width: 100%;
+}
+.uploadimage{
+    position: relative;
+}
+.btn{
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 60px;
+    display:inline-block;
+    margin: 0;
+    height: 11vh;
+    width: 18vw;
+    border-radius: 25px;
+    background-color: rgba(140, 23, 224, 0.087);
+}
+
+.change{
+    background-color: aqua;
+}
+
+/*#btn{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    font-size: 16px;
+    color: rgb(30, 27, 27);
+    background-color: #3c3c3c;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 50% 50% 0 0;
+}*/
+
+/*.jiantou{
+    display:inline-block;
+    margin: 0;
+    width:2vw;
+    margin-left: 50vw;
+    margin-top: 2vh;
+}*/
+
+#uploadBtn{
+    display: none;
+}
+h3{
+    width:100%;
+    padding-bottom:10px;
+    border-bottom:2px solid #CCC;
+}
+#close{
+    position:absolute;
+    top:2px;
+    right:2px;
+}
+#close span{
+    padding:3px 10px;
+    background-color: #999;
+    font-size:20px;
+    color:white;
+    cursor:pointer;
+}
+#log{
+    display: none; 
+    width: 400px; 
+    height: 400px; 
+    padding: 30px 40px; 
+    background-color: #F3F5F6; 
+    position: fixed; 
+    top: 70px; 
+    right: 30px;
+}
+.error{
+    float:right;
+    color:red;
+    font-size:1.2em;
+    margin-right:10px
+}
+
+
+
+      * {
+            margin: 0;
+            padding: 0;
+      }
+
+      /* 去除a标签的下划线 */
+      a {
+            text-decoration: none;
+      }
+      /*轮播图边框的控制*/
+      .con {
+            position: relative;
+            width: 55vw;
+            height: 50vh;
+            margin: 5vh auto 0 auto;
+            box-shadow: 0 0 5px mediumpurple;
+            overflow: hidden;
+
+      }
+
+      .wrap {
+            position: relative;
+            width: 5000vw;
+            height: 100vh;
+            z-index: 1;
+      }
+
+      /*.con.wrap img {
+            float: left;
+            width: 1px;
+            height: 400px;
+      }*/
+
+      .con .buttons {
+        position: absolute;
+        right: 35%;
+        bottom: 15px;
+        width: 200px;
+        z-index: 2;
+  }
+
+    /*  .con .buttons {
+            position: relative;
+            right: -3vw;
+            bottom: 2vh;
+            width: 2vw;
+            height: -1vh;
+            z-index: 2;
+      }*/
+
+      .con .buttons span {
+            margin-left: 5px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 50px;
+            background-color: mediumslateblue;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+      }
+
+      .con .buttons span.on {
+            background-color: red;
+      }
+
+      .con .arrow {
+            position: absolute;
+            top: 22vh;
+            color: mediumpurple;
+            padding: 0 1vh;
+            border-radius: 50%;
+            font-size: 50px;
+            z-index: 2;
+      }
+
+      .con .arrow_left {
+            position: absolute;
+            left: 52vw;
+      }
+
+      .cont .arrow_right {
+            right: 10000px;
+      }
+
+      .con .arrow:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+      }
+
