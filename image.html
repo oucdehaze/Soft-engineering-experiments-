@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,75 +8,472 @@
     <link ref="js" href="js.js">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Home</title>
 </head>
+
 <body>
     <!-- 1介绍网页-->
     <div class="container_new">
-        <div id="header"">
-            <p style="font-size: 50px;color: black;">图像去雾</p>
-        </div>
-         <div class="mytext">
-               <!-- <p style="font-size: 30px;color: black;">去雾功能能够加强对比、增大反差、提高色彩饱和度</p>
-                <p style="font-size: 30px;color: black;">强调图片层次感，有效解决照片中的起雾现象。</p> -->
-                <span id="des" style="font-size: 30px;color: black;"></span>          
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- 固定容器 -->
+            <div class="container">
+                <a class="navbar-brand" href="#">你好,欢迎来到集美家居</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <!-- active激活的 -->
+                        <li class="nav-item">
+                            <button class="login-button"
+                                onclick="document.getElementById('log').style.display='block'">登录</button>
+                            <div id="log">
+                                <form action="../control/logincheck.php" method="post">
+                                    <h3>请登录</h3>
+                                    <div class="form-group">
+                                        <label for="username">用户名</label>
+                                        <span id="user" class="error"> </span>
+                                        <input type="text" class="form-control" name="username" id="username"
+                                            placeholder="用户名" onblur='checkName()' required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">密码</label>
+                                        <span id="psword" class="error"> </span>
+                                        <input type="password" class="form-control" name="password" id="password"
+                                            placeholder="密码" onblur='checkPassword()' required />
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <span><input type="checkbox" value='true' style="width:15px;height:15px;">
+                                                记住我</span>
+                                        </label>
+                                    </div>
+                                    <input type="submit" class="btn btn-primary login-button" value="登录"
+                                        style="width:70px;height:40px;" />
+                                    <p class="text-success"><a href="register.html">>>还没账号？去注册</a></p>
+                                </form>
+                                <div id="close">
+                                    <span onclick="document.getElementById('log').style.display='none'">关闭</span>
+                                </div>
+                            </div>
+                            <script>
+                                var checkName = function () {
+                                    document.getElementById("user").innerHTML = "";
+                                    var name = eval(document.getElementById('username')).value;
+                                    if (name.length > 20 || name.length < 1)
+                                        document.getElementById("user").innerHTML = "用户名长度在1-20之间！";
+                                }
+                                var checkPassword = function () {
+                                    document.getElementById("psword").innerHTML = "";
+                                    var name = eval(document.getElementById('password')).value;
+                                    if (name.length > 12 || name.length < 6)
+                                        document.getElementById("psword").innerHTML = "密码长度在6-12之间！";
+                                }
+                            </script>
+                        </li>
+                        <li class="nav-item">
+                            <button class="login-button"
+                                onclick="document.getElementById('log').style.display='block'">登录</button>
+                            <div id="log">
+                                <form action="../control/logincheck.php" method="post">
+                                    <h3>请登录</h3>
+                                    <div class="form-group">
+                                        <label for="username">用户名</label>
+                                        <span id="user" class="error"> </span>
+                                        <input type="text" class="form-control" name="username" id="username"
+                                            placeholder="用户名" onblur='checkName()' required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">密码</label>
+                                        <span id="psword" class="error"> </span>
+                                        <input type="password" class="form-control" name="password" id="password"
+                                            placeholder="密码" onblur='checkPassword()' required />
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <span><input type="checkbox" value='true' style="width:15px;height:15px;">
+                                                记住我</span>
+                                        </label>
+                                    </div>
+                                    <input type="submit" class="btn btn-primary login-button" value="登录"
+                                        style="width:70px;height:40px;" />
+                                    <p class="text-success"><a href="register.html">>>还没账号？去注册</a></p>
+                                </form>
+                                <div id="close">
+                                    <span onclick="document.getElementById('log').style.display='none'">关闭</span>
+                                </div>
+                            </div>
+                            <script>
+                                var checkName = function () {
+                                    document.getElementById("user").innerHTML = "";
+                                    var name = eval(document.getElementById('username')).value;
+                                    if (name.length > 20 || name.length < 1)
+                                        document.getElementById("user").innerHTML = "用户名长度在1-20之间！";
+                                }
+                                var checkPassword = function () {
+                                    document.getElementById("psword").innerHTML = "";
+                                    var name = eval(document.getElementById('password')).value;
+                                    if (name.length > 12 || name.length < 6)
+                                        document.getElementById("psword").innerHTML = "密码长度在6-12之间！";
+                                }
+                            </script>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </nav>
+
+
+        <div id="header" style="text-align: center;">
+            <!--<p style="font-size: 50px;color: black;"></p>-->
+            <span id="htext" style="font-size: 50px;color: black;"></span>
+        </div>
+        <div class="mytext">
+            <p class="headertext" style="font-size: 30px;color: black;">去雾功能能够加强对比、增大反差、提高色彩饱和度</p>
+            <p class="headertext" style="font-size: 30px;color: black;">强调图片层次感，有效解决照片中的起雾现象。</p>
+            <span id="des" style="font-size: 30px;color: black;"></span>
+        </div>
         <div class="footer">
-            <img src="/jiantou.png" alt="箭头" class="jiantou">
-            <button id="slideButton" style="width:2vw;margin-left: 49vw;">滑动</button>
+            <img src="/templates/jiantou.png" alt="箭头" class="jiantou">
+            <button id="slideButton" style="width:2vw;margin-left: 49vw;" onclick="goToPage();">滑动</button>
         </div>
     </div>
     <script>
         try {
-          var typed = new Typed("#des", {
-            strings: ['去雾功能能够加强对比、增大反差、提高色彩饱和度、强调图片层次感，有效解决照片中的起雾现象。', ''],
-            startDelay: 0,
-            typeSpeed: 100,
-            loop: true,
-            backSpeed: 100,
-            showCursor: true
-          });
+            var typed = new Typed("#htext", {
+                strings: ['图片去雾', ''],
+                startDelay: 0,
+                typeSpeed: 70,
+                loop: true,
+                backSpeed: 100,
+                showCursor: true
+            });
         } catch (err) {
-          console.log(err)
+            console.log(err)
         }
-      </script>
+    </script>
     <!-- 2效果展示-->
-    <div class="container">
-        <script color="255,182,193" opacity="1" zindex="-1" count="100" src="https://cdn.bootcss.com/canvas-nest.js/2.0.4/canvas-nest.js" type="text/javascript"></script>
-        <div id="header"">
-            <p>图像去雾</p>
-        <!-- <p>图像去雾的原理是这是一段解释，是否会自动换行，换行之后行间距是多少</p> -->
-        </div>
+    <!--
+        <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Bootstrap 实例 - 标签页（Tab）插件</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-        <div class="main">
-            <div class="image-container">
-                <img src="/1.png" alt="图片1" class="p-img">
-                <img src="/2.png" alt="图片2" class="p-img">
-            </div>
-        </div>
-        <div class="footer">
-        </div>
-        <!-- 3体验-->    
-        </div>
-        <div class="container2">
-            <script color="255,182,193" opacity="1" zindex="-1" count="100" src="https://cdn.bootcss.com/canvas-nest.js/2.0.4/canvas-nest.js" type="text/javascript"></script>
-            <div id="header"">
-                <p>立即体验</p>
-            </div>
-    
-            <div class="main">
-                <div class="image-container">
-                    <img src="/1.png" alt="图片1" class="p-img">
-                    <img src="/2.png" alt="图片2" class="p-img">
-                </div>
-            </div>
-            <div class="uploadimage">
-                <label for="uploadBtn" class="btn">上传图片</label>
-                <input type="file" id="uploadBtn" accept="image/*" onchange="previewFile()">
-                <div id="preview"></div>
-            </div>
-        </div>
+<ul id="myTab" class="nav nav-tabs">
+	<li class="active">
+		<a href="#home" data-toggle="tab">
+			 菜鸟教程
+		</a>
+	</li>
+	<li><a href="#ios" data-toggle="tab">iOS</a></li>
+	<li class="dropdown">
+		<a href="#" id="myTabDrop1" class="dropdown-toggle" 
+		   data-toggle="dropdown">Java 
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+			<li><a href="#jmeter" tabindex="-1" data-toggle="tab">jmeter</a></li>
+			<li><a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a></li>
+		</ul>
+	</li>
+</ul>
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade in active" id="home">
+		<p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+	</div>
+	<div class="tab-pane fade" id="ios">
+		<p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple 
+			TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+	</div>
+	<div class="tab-pane fade" id="jmeter">
+		<p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+	</div>
+	<div class="tab-pane fade" id="ejb">
+		<button>denglu</button>
+	</div>
+</div>
 
 </body>
 </html>
+    -->
+    <script type="text/javascript">
+        $().ready(function () {
+            if (document.getElementById('a').value == 1) {
+                $(".nav-tabs>li").eq(0).addClass("active");
+                $(".nav-tabs>li").eq(1).removeClass("active");
+                $("#home").addClass("tab-pane fade in active");
+                $("#ios").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+            }
+            else if (document.getElementById('b').value == 2) {
+                $(".nav-tabs>li").eq(1).addClass("active");
+                $(".nav-tabs>li").eq(0).removeClass("active");
+                $("#ios").addClass("tab-pane fade in active");
+                $("#home").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+            }
+            else {
+                $(".nav-tabs>li").eq(0).addClass("active");
+                $(".nav-tabs>li").eq(1).removeClass("active");
+                $("#home").addClass("tab-pane fade in active");
+                $("#ios").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+            }
+            $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
+        });
+        function goToPage() {
+            $("html,body").animate({ scrollTop: $("#title").offset().top }, 500);//定位到《静夜思》
+        }
+    </script>
+    <div class="container2">
+        <script color="255,182,193" opacity="1" zindex="-1" count="100"
+            src="https://cdn.bootcss.com/canvas-nest.js/2.0.4/canvas-nest.js" type="text/javascript"></script>
+        <div id="header">
+            <p class="headertext">立即体验</p>
+            <!-- <p>图像去雾的原理是这是一段解释，是否会自动换行，换行之后行间距是多少</p> -->
+        </div>
+        <p id="title"></p>
+        <ul id="myTab" class="nav nav-tabs">
+            <li>
+                <a href="#home" data-toggle="tab">图片去雾</a>
+            </li>
+            <li>
+                <a href="#ios" data-toggle="tab">图片去雨</a>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+
+            <div id="home">
+                <div class="image-container">
+                    <img src={{src1}} alt="图片2" class="p-img">
+                    <img src={{src}} alt="图片1" class="p-img">
+                </div>
+                <form action="/dehaze" enctype='multipart/form-data' method='POST'>
+                    <input type="file" name="file" style="margin-top:20px;" />
+                    <input type="submit" value="上传" class="button-new" style="margin-top:15px;" />
+                    <input type="hidden" value={{src2}} id='a'>
+                </form>
+            </div>
+            <div id="ios">
+                <div class="image-container">
+                    <img src={{rain1}} alt="图片2" class="p-img">
+                    <img src={{rain}} alt="图片1" class="p-img">
+                </div>
+                <form action="/derain" enctype='multipart/form-data' method='POST'>
+                    <input type="file" name="file" style="margin-top:20px;" />
+                    <input type="submit" value="上传" class="button-new" style="margin-top:15px;" />
+                    <input type="hidden" value={{src2}} id='b'>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 3体验-->
+
+</body>
+<script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+
+<!-- <script type="text/javascript">
+
+    $(function () {
+
+        //判断
+        if ("success" == $("#ADD").val()) {
+
+        }
+    });  </script> -->
+<!-- <script type="text/javascript">
+    $().ready(function () {
+        if (document.getElementById('a').value == 1) {
+            $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
+        }
+        if (document.getElementById('b').value == 2) {
+            $("html,body").animate({ scrollTop: $("#title2").offset().top }, 0);
+        }
+    });
+    function goToPage() {
+        $("html,body").animate({ scrollTop: $("#title").offset().top }, 500);//定位到《静夜思》
+    }
+</script> -->
+
+</html>
 <!--字体样式修改失败-->
+<style>
+    body {
+        position: relative;
+        font-family: 'Roboto', sans-serif;
+        ;
+        color: black;
+        scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container_new {
+        background-image: url(/static/image/6.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 0;
+        min-height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .background {
+        width: 100%;
+        height: 100%;
+    }
+
+    img {
+        max-width: 100%;
+        border-style: none;
+    }
+
+    .container {
+        padding: 0;
+        min-height: 100%;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(90deg, rgba(243, 85, 185, 0.048)15%, rgba(229, 96, 189, 0.116)30%, rgba(140, 23, 224, 0.062)50%, rgba(93, 106, 223, 0.075)70%, rgba(33, 197, 194, 0.089)90%, rgba(33, 197, 194, 0.132));
+    }
+
+    .container2 {
+        padding: 0;
+        min-height: 100%;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(90deg, rgba(243, 85, 185, 0.048)15%, rgba(229, 96, 189, 0.116)30%, rgba(140, 23, 224, 0.062)50%, rgba(93, 106, 223, 0.075)70%, rgba(33, 197, 194, 0.089)90%, rgba(33, 197, 194, 0.132));
+        background-size: cover;
+    }
+
+    .header {
+        text-align: center;
+    }
+
+    .headertext {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 500;
+        color: mediumorchid;
+    }
+
+    .mytext {
+        margin: 0 auto;
+        margin-top: 15vh;
+        height: 80vh;
+        width: 60vw;
+    }
+
+    .image-container {
+        background-color: white;
+        padding: 2vh;
+        margin-top: 8vh;
+        margin: 0 auto;
+        height: 40vh;
+        width: 60vw;
+    }
+
+    .p-img {
+        width: 50%;
+        height: 100%;
+        margin-left: -6px;
+    }
+
+    .footer {
+        position: absolute;
+        z-index: 1;
+        height: 10vh;
+        bottom: 15vh;
+        left: 0;
+        width: 100%;
+    }
+
+    .uploadimage {
+        position: relative;
+    }
+
+    .btn {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 60px;
+        display: inline-block;
+        margin: 0;
+        height: 11vh;
+        width: 18vw;
+        border-radius: 25px;
+        background-color: rgba(140, 23, 224, 0.087);
+    }
+
+    .change {
+        background-color: aqua;
+    }
+
+    /*#btn{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    font-size: 16px;
+    color: rgb(30, 27, 27);
+    background-color: #3c3c3c;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 50% 50% 0 0;
+}*/
+    .jiantou {
+        display: inline-block;
+        margin: 0;
+        width: 2vw;
+        margin-left: 50vw;
+        margin-top: 2vh;
+    }
+
+    #uploadBtn {
+        display: none;
+    }
+
+    h3 {
+        width: 100%;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #CCC;
+    }
+
+    #close {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+    }
+
+    #close span {
+        padding: 3px 10px;
+        background-color: #999;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+    }
+
+    #log {
+        display: none;
+        width: 400px;
+        height: 400px;
+        padding: 30px 40px;
+        background-color: #F3F5F6;
+        position: fixed;
+        top: 70px;
+        right: 30px;
+    }
+
+    .error {
+        float: right;
+        color: red;
+        font-size: 1.2em;
+        margin-right: 10px
+    }
+</style>
