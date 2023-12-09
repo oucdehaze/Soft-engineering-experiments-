@@ -1,0 +1,84 @@
+
+.splitLine {
+  position: relative;
+  width: 0.2vw;
+  height: 40vh;
+  background: #206334;
+  margin-top: 5vh;
+  margin-left: -10vw;
+}
+
+.shuiping{
+  display: flex;
+  justify-content: space-around;
+  }
+
+.splitLine:before {
+  content: '';
+  display: inline-block;
+}
+
+.headertext2{
+  position: relative;
+  margin-top: 6vh;
+  margin-left: -35vw;
+}
+.headertext1{
+  position: relative;
+  margin-top: 1vh;
+  margin-left: -35vw;
+}
+
+.headertext3{
+  position: relative;
+  margin-top: 3.5vh;
+  margin-left: -35vw;
+}
+.headertext4{
+  position: relative;
+  margin-top: 1vh;
+  margin-left: -35vw;
+}
+.headertext5{
+  position: relative;
+  margin-top: 3.5vh;
+  margin-left: -35vw;
+}
+.headertext6{
+  position: relative;
+  margin-top: 1vh;
+  margin-left: -35vw;
+}
+
+.headertext7{
+  position: relative;
+  margin-top: 6vh;
+  margin-left: -20vw;
+}
+.headertext8{
+  position: relative;
+  margin-top: 1vh;
+  margin-left: -20vw;
+}
+.headertext9{
+  position: relative;
+  margin-top: 3.5vh;
+  margin-left: -20vw;
+}
+
+.headertext10{
+  position: relative;
+  margin-top: 1vh;
+  margin-left: -20vw;
+}
+
+.zuo{
+  position: relative;
+  margin-top: 1vh;
+  margin-left: 45vw;
+}
+.you{
+  position: relative;
+  margin-top: 1vh;
+  margin-left: 25vw;
+}
