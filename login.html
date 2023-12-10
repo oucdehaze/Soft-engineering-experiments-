@@ -1,5 +1,4 @@
-<!DOCTYPE html>  
-<html>  
+ <html>  
     <head>  
         <meta charset="utf-8" />  
         <title>login and register</title> 
@@ -11,6 +10,7 @@
         <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>  
         <!-- Bootstrap 核心 JavaScript 文件 -->  
         <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>  
+
         <!--jquery.validate-->  
         <script type="text/javascript" src="js/jquery.validate.min.js" ></script>  
         <script type="text/javascript" src="js/message.js" ></script>  
@@ -42,24 +42,46 @@
                 <div class="col-sm-9 col-md-9">  
                     <div class="form-group">  
                         <i class="fa fa-user fa-lg"></i>  
-                        <input class="form-control required" type="text" placeholder="Username" name="username" autofocus="autofocus" maxlength="20"/>  
+                        <input class="form-control required" type="text" placeholder="Username" id="username" autofocus="autofocus" maxlength="20"/>  
                     </div>  
                     <div class="form-group">  
                             <i class="fa fa-lock fa-lg"></i>  
-                            <input class="form-control required" type="password" placeholder="Password" name="password" maxlength="8"/>  
+                            <input class="form-control required" type="password" placeholder="Password" id="password" maxlength="8"/>  
                     </div>  
                     <div class="form-group">  
                         <label class="checkbox">  
                             <input type="checkbox" name="remember" value="1"/> 记住我 
                         </label>  
-                        <hr />  
+                        <hr/>  
                         <a href="javascript:;" id="register_btn" class="">注册一个账户</a>  
                     </div>  
                     <div class="form-group">  
-                        <input type="submit" class="btn btn-success pull-right" value="Login "/>     
+                        <button class="btn btn-success pull-right" id="login"> </button>    
                     </div>  
                 </div>  
-            </form>  
+            </form>
+            <!-- <script src="/static/js/login.js"></script>    -->
+            <script>const button = document.getElementById('login');
+                const username = document.getElementById('username');
+                const password = document.getElementById('password');
+                
+                function Login(){
+                    $.ajax({
+                        type:"POST",
+                        url:"/image",
+                        datatype:"json",
+                        data:{"username":username.value,"password":password.value},
+                        // success:function(msg){
+                        //     console.log(msg);
+                        //     // $("#display").text(msg.person);
+                        // },
+                        // error: function (xhr, status, error) {
+                        //     console.log(error);
+                        // }    
+                    });
+                }
+                button.addEventListener('click', Login);</script> 
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         </div>  
   <!-- 注册页 -->
         <div class="form row">  
@@ -87,58 +109,16 @@
         </div>  
         </div>  
 
-    <!-- 需要相应后端表单 -->
+   
     <script>
-        $().ready(function() {  
-    $("#login_form").validate({  
-        rules: {  
-            username: "required",  
-            password: {  
-                required: true,  
-                minlength: 5  
-            },  
-        },  
-        messages: {  
-            username: "请输入姓名",  
-            password: {  
-                required: "请输入密码",  
-                minlength: jQuery.format("密码不能小于{0}个字 符")  
-            },  
-        }  
-    });  
-    $("#register_form").validate({  
-        rules: {  
-            username: "required",  
-            password: {  
-                required: true,  
-                minlength: 5  
-            },  
-            rpassword: {  
-                equalTo: "#register_password"  
-            },  
-            email: {  
-                required: true,  
-                email: true  
-            }  
-        },  
-        messages: {  
-            username: "请输入姓名",  
-            password: {  
-                required: "请输入密码",  
-                minlength: jQuery.format("密码不能小于{0}个字 符")  
-            },  
-            rpassword: {  
-                equalTo: "两次密码不一样"  
-            },    
-        }  
-    });  
-});  
-$(function() {  
-    $("#register_btn").click(function() {  
-        $("#register_form").css("display", "block");  
-        $("#login_form").css("display", "none");  
-    });  
-});  
+
+document.getElementById('register_btn').addEventListener('click', function() {
+    $("#register_btn").click(function() {  
+        $("#register_form").css("display", "block");  
+        $("#login_form").css("display", "none");  
+    }); 
+  // 当<a>触发click时，处理业务
+}, true);
 </script>    
 </body>  
 </html>  
