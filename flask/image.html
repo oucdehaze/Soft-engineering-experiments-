@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    body {
+        position: relative;
+        font-family: 'Roboto', sans-serif;
+        ;
+        color: black;
+        scroll-behavior: smooth;
+        margin: 0;
+        padding: 0;
+    }
+
+    /*
+首页
+*/
+    .container_new {
+        background-image: url(https://840y096t32.goho.co/static/image/6-2.jpg);
+        background-size: cover;
+        background-attachment: fixed;
+        padding: 0;
+        max-height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /*
+导航栏
+*/
+    .navcontainer {
+        color: white;
+        padding: 0;
+        min-height: 100%;
+        min-width: 100%;
+        overflow: hidden;
+        position: relative;
+        /*background-color: white;*/
+        /*
+    background: linear-gradient(90deg,rgba(243, 85, 185, 0.048)15%,rgba(229, 96, 189, 0.116)30%,rgba(140, 23, 224, 0.062)50%,rgba(93, 106, 223, 0.075)70%,rgba(33, 197, 194, 0.089)90%,rgba(33, 197, 194, 0.132));
+    */
+    }
+
+    /*
+登录注册按钮
+*/
+    .login-button {
+        font-size: 1.5vw;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        background-color: transparent;
+        color: rgba(149, 49, 212, 0.703);
+        box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.2),
+            -6px -6px 16px rgba(255, 255, 255, 0.8),
+            inset 0px 0px 0px rgba(0, 0, 0, 0.2),
+            inset 0px 0px 0px rgba(255, 255, 255, 0.8);
+        transition: 0.2s;
+    }
+
+    .login-button:hover {
+        color: rgba(212, 48, 193, 0.594), 48, 176;
+        background-color: #f2f3ff;
+        border: 1px solid rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2),
+            0px 0px 0px rgba(255, 255, 255, 0.8),
+            inset 6px 6px 12px rgba(0, 0, 0, 0.2),
+            inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        transform: translateY(10px) scale(0.98);
+    }
+
+    .register-button {
+        font-size: 1.5vw;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        background-color: transparent;
+        color: rgba(149, 49, 212, 0.703);
+        box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.2),
+            -6px -6px 16px rgba(255, 255, 255, 0.8),
+            inset 0px 0px 0px rgba(0, 0, 0, 0.2),
+            inset 0px 0px 0px rgba(255, 255, 255, 0.8);
+        transition: 0.2s;
+    }
+
+    .register-button:hover {
+        color: rgba(212, 48, 193, 0.594), 48, 176;
+        background-color: #f2f3ff;
+        border: 1px solid rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2),
+            0px 0px 0px rgba(255, 255, 255, 0.8),
+            inset 6px 6px 12px rgba(0, 0, 0, 0.2),
+            inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        transform: translateY(10px) scale(0.98);
+    }
+
+    .container2 {
+        padding: 0;
+        min-height: 100%;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(90deg, rgba(243, 85, 185, 0.048)15%, rgba(229, 96, 189, 0.116)30%, rgba(140, 23, 224, 0.062)50%, rgba(93, 106, 223, 0.075)70%, rgba(33, 197, 194, 0.089)90%, rgba(33, 197, 194, 0.132));
+        background-size: cover;
+    }
+
+    .nav-item {
+        position: relative;
+        right: 1vw;
+        margin: 1vw;
+    }
+
+    .navbar-nav {
+        float: right !important;
+    }
+
+    .headertext {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 500;
+        color: mediumorchid;
+    }
+
+    .mytext {
+        position: relative;
+        margin: 0 auto;
+        margin-top: 20vh;
+        height: 80vh;
+        width: 60vw;
+    }
+
+
+    .footer {
+        position: absolute;
+        z-index: 1;
+        height: 10vh;
+        bottom: 15vh;
+        left: 0;
+        width: 100%;
+    }
+
+    .uploadimage {
+        position: relative;
+    }
+
+    .btn {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 60px;
+        display: inline-block;
+        margin: 0;
+        height: 11vh;
+        width: 18vw;
+        border-radius: 25px;
+        background-color: rgba(140, 23, 224, 0.087);
+    }
+
+
+    /*#btn{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    font-size: 16px;
+    color: rgb(30, 27, 27);
+    background-color: #3c3c3c;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 50% 50% 0 0;
+}*/
+    .jiantou {
+        background-image: url(https://840y096t32.goho.co/static/image/jiantou.png);
+        display: inline-block;
+        margin: 0;
+        background-color: transparent;
+        border-width: 0px;
+        width: 2vw;
+        height: 5vh;
+        margin-top: 10vh;
+        margin-left: 49vw;
+        background-size: 100% 100%;
+    }
+
+    #uploadBtn {
+        display: none;
+    }
+
+    h3 {
+        width: 100%;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #CCC;
+    }
+
+    #close {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+    }
+
+    #close span {
+        padding: 3px 10px;
+        background-color: #999;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+    }
+
+    #log {
+        display: none;
+        width: 400px;
+        height: 400px;
+        padding: 30px 40px;
+        background-color: #F3F5F6;
+        position: fixed;
+        top: 70px;
+        right: 30px;
+    }
+
+    .error {
+        float: right;
+        color: red;
+        font-size: 1.2em;
+        margin-right: 10px
+    }
+
+    /*
+图片滑动
+*/
+
+    .image-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        left: 50%;
+        transform: translate(-50%);
+        width: 60vw;
+        height: 40vh;
+        padding: 2vh;
+        margin-top: 8vh;
+        border: 6px solid white;
+    }
+
+    /* .p-img {
+        width: 100%;
+        height: 100%;
+        margin-left: -6px;
+    } */
+
+    img {
+        max-width: 100%;
+        border-style: none;
+    }
+
+    /*
+  删了p-img
+  */
+
+    /*new覆盖在上面*/
+    .p-img {
+        width: 50%;
+        height: 100%;
+    }
+
+    /*
+轮播图
+*/
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 去除a标签的下划线 */
+    a {
+        text-decoration: none;
+    }
+
+    /*轮播图边框的控制*/
+    .con {
+        position: relative;
+        width: 55vw;
+        height: 50vh;
+        margin: 5vh auto 0 auto;
+        box-shadow: 0 0 5px mediumpurple;
+        overflow: hidden;
+
+    }
+
+    .wrap {
+        position: relative;
+        width: 5000vw;
+        height: 100vh;
+        z-index: 1;
+    }
+
+    /*.con.wrap img {
+                float: left;
+                width: 1px;
+                height: 400px;
+          }*/
+
+    .con .buttons {
+        position: absolute;
+        right: 35%;
+        bottom: 15px;
+        width: 200px;
+        z-index: 2;
+    }
+
+    /* .con .buttons {
+                position: relative;
+                right: -3vw;
+                bottom: 2vh;
+                width: 2vw;
+                height: -1vh;
+                z-index: 2;
+          }*/
+
+    .con .buttons span {
+        margin-left: 5px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        border-radius: 50px;
+        background-color: mediumslateblue;
+        color: white;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .con .buttons span.on {
+        background-color: red;
+    }
+
+    .con .arrow {
+        position: absolute;
+        top: 22vh;
+        color: mediumpurple;
+        padding: 0 1vh;
+        border-radius: 50%;
+        font-size: 50px;
+        z-index: 2;
+    }
+
+    .con .arrow_left {
+        position: absolute;
+        left: 52vw;
+    }
+
+    .cont .arrow_right {
+        right: 10000px;
+    }
+
+    .con .arrow:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .splitLine {
+        position: relative;
+        width: 0.2vw;
+        height: 40vh;
+        background: #206334;
+        margin-top: 3vh;
+        text-align: center;
+    }
+
+    .shuiping {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background: linear-gradient(90deg, rgba(243, 85, 185, 0.048)15%, rgba(229, 96, 189, 0.116)30%, rgba(140, 23, 224, 0.062)50%, rgba(93, 106, 223, 0.075)70%, rgba(33, 197, 194, 0.089)90%, rgba(33, 197, 194, 0.132));
+        background-size: cover;
+    }
+
+    .splitLine:before {
+        margin: 0 auto;
+        content: '';
+    }
+
+    .zuo {
+        position: relative;
+        margin-top: 1vh;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+    }
+
+    .you {
+        position: relative;
+        margin-top: 1vh;
+        padding-top: 3vh;
+        padding-bottom: 3vh;
+    }
+
+    /*
+选择功能
+*/
+    #myTab {
+        margin-top: 5vh;
+    }
+
+    .juzhong {
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0% 20%;
+    }
+
+    /*
+提交图片
+*/
+    .ui_button {
+        position: relative;
+        text-align: center;
+        width: 20vw;
+        background-color: #af4ca337;
+        color: white;
+        padding: 14px 20px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .ui_button:hover {
+        background-color: #af4ca367;
+    }
+
+    input[type=submit] {
+        position: relative;
+        width: 20vw;
+        background-color: #af4ca337;
+        color: white;
+        padding: 14px 20px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+        font-weight: 700;
+    }
+
+    input[type=submit]:hover {
+        background-color: #af4ca367;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link ref="js" href="js.js">
+    <script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+
+<body>
+    <!--注意背景图改成6-1 -->
+    <!-- 1介绍网页-->
+    <div class="container_new">
+        <!-- 导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- 固定容器 -->
+            <div class="navcontainer">
+                <a class="navbar-brand"
+                    style="font-family:kaiti; color:rgba(149, 49, 212, 0.703); font-size: 2vw;">欢迎使用图像修复功能</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <!-- active激活的 -->
+                        <!-- 点击后跳转登录界面 -->
+                        <li class="nav-item">
+                            <button class="login-button"
+                                onclick="document.getElementById('log').style.display='block'">登录</button>
+                        </li>
+                        <!-- 注册 -->
+                        <li class="nav-item">
+                            <button class="register-button"
+                                onclick="document.getElementById('res').style.display='block'">注册</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="header" style="text-align: center; position: relative; top: 15vh; ">
+            <!--<p style="font-size: 50px;color: black;"></p>-->
+            <span id="htext"
+                style="font-size: 7vw;font-family: STXingKai; font-weight:lighter; color: rgba(149, 49, 212, 0.703);">图片修复</span>
+        </div>
+        <div class="mytext">
+            <p class="headertext" style="font-size: 2.5vw;font-family: STXingKai; color: rgba(149, 49, 212, 0.703);">
+                去雾功能能够加强对比、增大反差、提高色彩饱和度，强调图片层次感，有效解决照片中的起雾现象。</p>
+            <p class="headertext" style="font-size: 2.5vw;font-family: STXingKai; color: rgba(149, 49, 212, 0.703);">
+            </p>
+        </div>
+        <div class="footer">
+            <!-- <img src="static/image/jiantou.png" alt="箭头" class="jiantou"> -->
+            <button id="slideButton" onclick="goToPage();" class="jiantou"></button>
+        </div>
+    </div>
+
+    <!-- 2效果展示-->
+    <script src="js/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            if (document.getElementById('a').value == 1) {
+                $(".nav-tabs>li").eq(0).addClass("active");
+                $(".nav-tabs>li").eq(1).removeClass("active");
+                $("#choice1").addClass("tab-pane fade in active");
+                $("#choice2").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                // $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
+            }
+            else if (document.getElementById('b').value == 2) {
+                $(".nav-tabs>li").eq(1).addClass("active");
+                $(".nav-tabs>li").eq(0).removeClass("active");
+                $("#choice2").addClass("tab-pane fade in active");
+                $("#choice1").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                // $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
+            }
+            else {
+                $(".nav-tabs>li").eq(0).addClass("active");
+                $(".nav-tabs>li").eq(1).removeClass("active");
+                $("#choice1").addClass("tab-pane fade in active");
+                $("#choice2").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+            }
+        });
+        function goToPage() {
+            $("html,body").animate({ scrollTop: $("#title").offset().top }, 500);//定位到《静夜思》
+        }
+
+        $(function () {
+            $("#update-value-form").click(function () {
+                event.preventDefault();  // 阻止表单的默认提交行为
+                var fileObj = document.getElementById("xFile").files[0];
+                var formFile = new FormData();
+                formFile.append("file", fileObj); //加入文件对象
+                var Imgsrc = document.getElementById("1");
+                var Imgsrc1 = document.getElementById("2");
+                var Imgrain = document.getElementById("3");
+                var Imgrain1 = document.getElementById("4");
+                $.ajax({
+                    url: "https://840y096t32.goho.co/dehaze",
+                    data: formFile,
+                    type: "post",
+                    dataType: "json",
+                    cache: false,//上传文件无需缓存
+                    processData: false,//用于对data参数进行序列化处理 这里必须false
+                    contentType: false, //必须
+                    success: function (data) {
+                        src = JSON.stringify(data.src);
+                        src1 = JSON.stringify(data.src1);
+                        rain = JSON.stringify(data.rain);
+                        rain1 = JSON.stringify(data.rain1);
+                        src2=JSON.stringify(data.src2);
+                        alert("上传成功!");
+                        location.reload();  
+                    },
+                    error:function()
+                    {
+                        alert("上传失败，请重试!");
+                    }
+                })
+            })
+        })
+        $(function () {
+            $("#update-value-form2").click(function () {
+                event.preventDefault();  // 阻止表单的默认提交行为
+                var fileObj = document.getElementById("xFile1").files[0];
+                var formFile = new FormData();
+                formFile.append("file", fileObj); //加入文件对象
+                var Imgsrc = document.getElementById("1");
+                var Imgsrc1 = document.getElementById("2");
+                var Imgrain = document.getElementById("3");
+                var Imgrain1 = document.getElementById("4");
+                $.ajax({
+                    url: "https://840y096t32.goho.co/derain",
+                    data: formFile,
+                    type: "post",
+                    dataType: "json",
+                    cache: false,//上传文件无需缓存
+                    processData: false,//用于对data参数进行序列化处理 这里必须false
+                    contentType: false, //必须
+                    success: function (data) {
+                        src = JSON.stringify(data.src);
+                        src1 = JSON.stringify(data.src1);
+                        rain = JSON.stringify(data.rain);
+                        rain1 = JSON.stringify(data.rain1);
+                        src2=JSON.stringify(data.src2);
+                        alert("上传成功!");
+                        location.reload();  
+                    },
+                    error:function()
+                    {
+                        alert("上传失败，请重试!");
+                    }
+                })
+            })
+        })
+    </script>
+    <!--功能实现-->
+    <div class="container2">
+        <script color="255,182,193" opacity="1" zindex="-1" count="100"
+            src="https://cdn.bootcss.com/canvas-nest.js/2.0.4/canvas-nest.js" type="text/javascript"></script>
+        <div id="header" style="position: relative; top: 5vh;">
+            <p id="title"></p><!--新增-->
+            <p class="headertext">立即体验</p>
+        </div>
+        <ul id="myTab" class="nav nav-tabs">
+            <li>
+                <a style="font-size: large;" href="#choice1" data-toggle="tab">图片去雾</a>
+            </li>
+            <li>
+                <a style="font-size: large;" href="#choice2" data-toggle="tab">图片去雨</a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div id="choice1">
+                <div class="image-container">
+                    <img id="2" src={{src1}} alt="图片2" class="p-img"><!--!!!!!!!!!!!!class被修改了，可能影响后端-->
+                    <img id="1" src={{src}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                </div>
+                <form action="https://840y096t32.goho.co/dehaze" enctype='multipart/form-data' method='POST'>
+                    <div class="juzhong">
+                        <label class="ui_button ui_button_primary" for="xFile">选择文件</label>
+                        <input type="file" name="file" id="xFile" style="position:absolute;clip:rect(0 0 0 0);" />
+                        <input id="update-value-form" type="submit" value="上传" class="button-new" />
+                        <input type="hidden" value={{src2}} id='a'>
+                    </div>
+                </form>
+            </div>
+
+            <div id="choice2">
+                <div class="image-container">
+                    <img id="4" src={{rain1}} alt="图片2" class="p-img"><!--class被修改了，可能影响后端-->
+                    <img id="3" src={{rain}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                </div>
+                <form action="https://840y096t32.goho.co/derain" enctype='multipart/form-data' method='POST'>
+                    <div class="juzhong">
+                        <label class="ui_button ui_button_primary" for="xFile1">选择文件</label>
+                        <input type="file" name="file" id="xFile1" style="position:absolute;clip:rect(0 0 0 0);" />
+                        <input id="update-value-form2" type="submit" value="上传" class="button-new" />
+                        <input type="hidden" value={{src2}} id='b'>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--详情-->
+    <div class="container2">
+        <p></p>
+        <p class="headertext">相关介绍</p>
+    </div>
+    <div class="shuiping">
+        <div class="zuo">
+            <p class="headertext2"
+                style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);font-weight: 800;">
+                Q:为什么选择我们？</p>
+            <p class="headertext1" style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);">
+                A:提供免费的服务，绿色无广告</p>
+            <p class="headertext3"
+                style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);font-weight: 800;">
+                Q:网站还有哪些不足？</p>
+            <p class="headertext4" style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);">
+                A:目前去雨网络较大，运行时间较长，请耐心等待</p>
+            <p class="headertext5"
+                style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);font-weight: 800;">
+                Q:主要针对哪些问题进行图像修复？</p>
+            <p class="headertext6" style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);">
+                A:图像去雾、去雨珠、去雨痕。</p>
+        </div>
+        <div class="splitLine"></div>
+        <div class="you">
+            <p class="headertext7"
+                style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);font-weight: 800;">
+                Q:修复效果如何？</p>
+            <p class="headertext8" style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);">
+                A:去雾和去雨功能可以得到清晰度较高的图片，</p>
+            <p class="headertext8" style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);">
+                但去雾功能对于非彩色图片的处理相对较差</p>
+            <p class="headertext9"
+                style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);font-weight: 800;">
+                Q:如何保存图片？</p>
+            <p class="headertext10" style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);">
+                A:右键图片，点击“将图像另存为”，</p>
+            <p class="headertext10" style="font-size: 1.3vw;font-family: SongTi; color: rgba(149, 49, 212, 0.703);">
+                即可进行图片保存。</p>
+        </div>
+    </div>
+</body>
+
+</html>

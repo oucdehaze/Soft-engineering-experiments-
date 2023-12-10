@@ -29,26 +29,31 @@ from metrics import calc_psnr, calc_ssim
 # flask修改尝试
 app=Flask(__name__)
 
-src = '/static/image/2.png'
-src1 = '/static/image/1.png'
-rain='/static/image/2.jpg'
-rain1='/static/image/1.jpg'
-
-
 # obsClient = ObsClient(
 #  access_key_id='USWVGG2I9WLFIO7PMFSX',#刚刚下载csv文件里面的Access Key Id
 # secret_access_key='SrXpHa7y6AAANSyumAtuebyrVl37cNeO1Spnqoxm',#刚刚下载csv文件里面的Secret Access Key
 #    server='https://ouc-picture-repair.obs.cn-east-3.myhuaweicloud.com'#这里的访问域名就是我们在桶的基本信息那里记下的东西
 #)
+src = 'https://840y096t32.goho.co/static/image/2.jpg'
+src1 = 'https://840y096t32.goho.co/static/image/1.jpg'
+src2 = 0
+rain='https://840y096t32.goho.co/static/image/2-2.jpg'
+rain1='https://840y096t32.goho.co/static/image/1-2.jpg'
+flag=0
 
 #根据需要修改这里的内容
 @app.route('/')
 def index():
-   return render_template("image.html",src='/static/image/2.png',src1='/static/image/1.png',src2 = 0,rain='/static/image/2.jpg',rain1='/static/image/1.jpg')
+    #在登陆设置初值，登陆时flag=1
+    global src,src1,src2,rain,rain1,flag
+    if flag==0:
+      flag=1
+      return render_template("image.html",src='https://840y096t32.goho.co/static/image/2.jpg',src1='https://840y096t32.goho.co/static/image/1.jpg',src2 = 0,rain='https://840y096t32.goho.co/static/image/2-2.jpg',rain1='https://840y096t32.goho.co/static/image/1-2.jpg')
+    return render_template("image.html",src=src,src1=src1,src2 = src2,rain=rain,rain1=rain1)
 
 @app.route('/dehaze',methods=['POST'])
 def dehaze_image():
-
+  global src,src1,src2,rain,rain1
   #data_haze=request.form['data_haze']
   #这里接收前端传来的文件路径
   #需要思考上传的代码逻辑 参考文件：http://t.csdnimg.cn/L2WaR
@@ -93,13 +98,15 @@ def dehaze_image():
   #return render_template("dehaze.html",mimetype="image/jpeg",image=upload_path)
   #使用OBS桶的话可能需要前端使用OBS临时url 参考文件：https://support.huaweicloud.com/perms-cfg-obs/obs_40_0009.html
   # return render_template("dehaze.html",mimetype="image/jpeg",image=secure_filename(dehaze_image.filename))
-  src='/static/image/test.jpg'
-  src1='/static/image/put.jpg'
-  return render_template("image.html",src=src,src1=src1,src2 = 1,rain=rain,rain1=rain1)
+  src='https://840y096t32.goho.co/static/image/test.jpg'
+  src1='https://840y096t32.goho.co/static/image/put.jpg'
+  src2=1
+  data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"src2":1}
+  return jsonify(data)
 
 @app.route('/derain',methods=['POST'])
 def derain():
-
+  global src,src1,src2,rain,rain1
   rain_path = request.files['file']
 
   model = Generator().cpu()
@@ -117,13 +124,15 @@ def derain():
   torchvision.utils.save_image(out, "static/image/test1.jpg")
   # cv2.imwrite('static/image/test1.jpg', out)
 
-  rain='/static/image/test1.jpg'
-  rain1='/static/image/put1.jpg'
-  return render_template("image.html",src=src,src1=src1,src2 = 2,rain=rain,rain1=rain1)
+  rain='https://840y096t32.goho.co/static/image/test1.jpg'
+  rain1='https://840y096t32.goho.co/static/image/put1.jpg'
+  src2=2
+  data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"src2":2}
+  return jsonify(data)
   
 if __name__=="__main__":
     #这里学习怎么自己的电脑变为服务器并发布自己的项目 参考文章：https://blog.csdn.net/u014252871/article/details/70569889?fromshare=blogdetail
     #不过目前不急，可以等功能实现好在本机上调试好以后部署，这样做可以降低成本，缺点是关机后就没办法使用服务器了
     #也要商量一下部署在谁的服务器上，也可以用相似的方法将应用部署在板子上
-    #app.run(port=5000,host="10.1.12.47",debug=True)
-    app.run()
+    #app.run(port=80,host="10.140.222.209",debug=True)
+    app.run(port=5000)
