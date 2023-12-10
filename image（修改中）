@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link ref="js" href="js.js">
+    <script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+
+<body>
+    <!--注意背景图改成6-1 -->
+    <!-- 1介绍网页-->
+    <div class="container_new">
+        <!-- 导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- 固定容器 -->
+            <div class="navcontainer">
+                <a class="navbar-brand" style="font-family: STXingKai; color:rgba(149, 49, 212, 0.703); font-size: 2vw;">欢迎来到图像修复平台~</a>
+            </div>
+        </nav>
+                    
+        <div id="header" style="text-align: center; position: relative; top: 15vh; ">
+            <!--<p style="font-size: 50px;color: black;"></p>-->
+            <span id="htext" style="font-size: 7vw;font-family: STXingKai; font-weight:lighter; color: rgba(149, 49, 212, 0.703);">图像修复</span>
+        </div>
+         <div class="mytext">
+                <p class="headertext" style="font-size: 2.5vw;font-family: STXingKai; color: rgba(149, 49, 212, 0.703);">本网站免费提供图片去雾、去雨功能</p>
+                <p class="headertext" style="font-size: 2.5vw;font-family: STXingKai; color: rgba(149, 49, 212, 0.703);">提高图片清晰度，让您即刻获取高清图像</p>         
+            </div>
+        <div class="footer">
+            <img src="/jiantou.png" alt="箭头" class="jiantou">
+            <button id="slideButton" style="width:2vw;margin-left: 49vw;" onclick="goToPage();">滑动</button>
+        </div> 
+    </div>
+
+    <!-- 2效果展示-->
+    <script type="text/javascript">
+        $().ready(function () {
+            if (document.getElementById('a').value == 1) {
+                $(".nav-tabs>li").eq(0).addClass("active");
+                $(".nav-tabs>li").eq(1).removeClass("active");
+                $("#choice1").addClass("tab-pane fade in active");
+                $("#choice2").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
+            }
+            else if (document.getElementById('b').value == 2) {
+                $(".nav-tabs>li").eq(1).addClass("active");
+                $(".nav-tabs>li").eq(0).removeClass("active");
+                $("#choice2").addClass("tab-pane fade in active");
+                $("#choice1").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
+            }
+            else {
+                $(".nav-tabs>li").eq(0).addClass("active");
+                $(".nav-tabs>li").eq(1).removeClass("active");
+                $("#choice1").addClass("tab-pane fade in active");
+                $("#choice2").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+            }
+        });
+        function goToPage() {
+            $("html,body").animate({ scrollTop: $("#title").offset().top }, 500);//定位
+        }
+    </script>
+    <div class="container2">
+    </div>
+    <!--功能实现-->
+    <div class="container2">
+        <script color="255,182,193" opacity="1" zindex="-1" count="100" src="https://cdn.bootcss.com/canvas-nest.js/2.0.4/canvas-nest.js" type="text/javascript"></script>
+        <div id="header"  style="position: relative; top: 5vh;">
+            <p class="headertext">立即体验</p>
+        </div>
+        <p id="title"></p><!--新增-->
+        <ul id="myTab" class="nav nav-tabs">
+            <li>
+                <a style="font-size: large; color: rgba(186, 85, 211, 0.646);" href="#choice1" data-toggle="tab">图片去雾</a>
+            </li>
+            <li>
+                <a style="font-size: large; color: rgba(186, 85, 211, 0.646);" href="#choice2" data-toggle="tab">图片去雨</a>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div id="choice1">
+                <div class="image-container">
+                    <img src={{src1}} alt="图片2" class="p-img"><!--!!!!!!!!!!!!class被修改了，可能影响后端-->
+                    <img src={{src}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                </div>
+                <form action="/dehaze" enctype='multipart/form-data' method='POST' class="upload_form">
+                    <label class="ui_button ui_button_primary" for="xFile">选择文件</label>
+                    <input type="file" name="file" id="xFile" style="position:absolute;clip:rect(0 0 0 0);"/>
+                    <input type="submit" value="上传" class="button-new"/>
+                    <input type="hidden" value={{src2}} id='a'>
+                </form>
+            </div>
+            <div id="choice2">
+                <div class="image-container">
+                    <img src={{rain1}} alt="图片2" class="p-img"><!--class被修改了，可能影响后端-->
+                    <img src={{rain}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                </div>
+                <form action="/dehaze" enctype='multipart/form-data' method='POST' class="upload_form">
+                    <label class="ui_button ui_button_primary" for="xFile">选择文件</label>
+                    <input type="file" name="file" id="xFile" style="position:absolute;clip:rect(0 0 0 0);"/>
+                    <input type="submit" value="上传" class="button-new"/>
+                    <input type="hidden" value={{src2}} id='b'>
+                </form>            
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
