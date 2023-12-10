@@ -1,370 +1,180 @@
 body{
-    position: relative;
-    font-family: 'Roboto', sans-serif;;
-    color: black;
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
 }
 /*
 首页
 */
 .container_new{
-    background-image: url(/6-1.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    padding: 0;
-    min-height: 100vh;
-    overflow: hidden;
-    position: relative;
+  background-image: url(/6-1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 0;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
-
-/*
-导航栏
-*/
+/*导航栏*/
 .navcontainer{
-    color: white;
-    padding: 0;
-    min-height: 100%;
-    min-width: 100%;
-    overflow: hidden;
-    position: relative;
-    /*background-color: white;*/
-    /*
-    background: linear-gradient(90deg,rgba(243, 85, 185, 0.048)15%,rgba(229, 96, 189, 0.116)30%,rgba(140, 23, 224, 0.062)50%,rgba(93, 106, 223, 0.075)70%,rgba(33, 197, 194, 0.089)90%,rgba(33, 197, 194, 0.132));
-    */
+  color: white;
+  padding: 0;
+  margin-top: 3vh;
+  margin-left: 1vh;
+  min-height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  position: relative;
 }
-
-/*
-登录注册按钮
-*/
-.login-button{
-    font-size: 1.5vw;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    background-color:transparent;
-    color: rgba(149, 49, 212, 0.703);
-    box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.2),
-      -6px -6px 16px rgba(255, 255, 255, 0.8),
-      inset 0px 0px 0px rgba(0, 0, 0, 0.2),
-      inset 0px 0px 0px rgba(255, 255, 255, 0.8);
-    transition: 0.2s;
-}
-.login-button:hover {
-    color: rgba(212, 48, 193, 0.594), 48, 176;
-    background-color: #f2f3ff;
-    border: 1px solid rgba(255, 255, 255, 1);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2),
-      0px 0px 0px rgba(255, 255, 255, 0.8),
-      inset 6px 6px 12px rgba(0, 0, 0, 0.2),
-      inset -6px -6px 12px rgba(255, 255, 255, 0.8);
-    transform: translateY(10px) scale(0.98);
-}
-.register-button{
-    font-size: 1.5vw;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    background-color:transparent;
-    color: rgba(149, 49, 212, 0.703);
-    box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.2),
-      -6px -6px 16px rgba(255, 255, 255, 0.8),
-      inset 0px 0px 0px rgba(0, 0, 0, 0.2),
-      inset 0px 0px 0px rgba(255, 255, 255, 0.8);
-    transition: 0.2s;
-}
-.register-button:hover {
-    color: rgba(212, 48, 193, 0.594), 48, 176;
-    background-color: #f2f3ff;
-    border: 1px solid rgba(255, 255, 255, 1);
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2),
-      0px 0px 0px rgba(255, 255, 255, 0.8),
-      inset 6px 6px 12px rgba(0, 0, 0, 0.2),
-      inset -6px -6px 12px rgba(255, 255, 255, 0.8);
-    transform: translateY(10px) scale(0.98);
-}
-.container2{
-    padding: 0;
-    min-height: 100vh;
-    overflow: hidden;
-    position: relative;
-    background: linear-gradient(90deg,rgba(243, 85, 185, 0.048)15%,rgba(229, 96, 189, 0.116)30%,rgba(140, 23, 224, 0.062)50%,rgba(93, 106, 223, 0.075)70%,rgba(33, 197, 194, 0.089)90%,rgba(33, 197, 194, 0.132));
+.container2 {
+  padding: 0;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(90deg, rgba(243, 85, 185, 0.048)15%, rgba(229, 96, 189, 0.116)30%, rgba(140, 23, 224, 0.062)50%, rgba(93, 106, 223, 0.075)70%, rgba(33, 197, 194, 0.089)90%, rgba(33, 197, 194, 0.132));
+  background-size: cover;
 }
 .nav-item{
-    position: relative;
-    right: 1vw;
-    margin: 1vw;
+  position: relative;
+  right: 1vw;
+  margin: 1vw;
 }
 .navbar-nav {
-    float: right !important;
+  float: right !important;
 }
+/*主页介绍*/
 .headertext{
-    text-align: center;
-    font-size: 40px;
-    font-weight: 500;
-    color:mediumorchid;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 500;
+  color:mediumorchid;
 }
 .mytext{
-    position: relative;
-    margin: 0 auto;
-    margin-top: 20vh;
-    height: 80vh;
-    width: 60vw;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 20vh;
+  height: 80vh;
+  width: 60vw;
 }
-
-
+/*底部*/
 .footer{
-    position: absolute;
-    z-index: 1;
-    height: 10vh;
-    bottom: 15vh;
-    left: 0;
-    width: 100%;
+  position: absolute;
+  z-index: 1;
+  height: 10vh;
+  bottom: 15vh;
+  left: 0;
+  width: 100%;
 }
 .uploadimage{
-    position: relative;
+  position: relative;
 }
-.btn{
-    text-align: center;
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 60px;
-    display:inline-block;
-    margin: 0;
-    height: 11vh;
-    width: 18vw;
-    border-radius: 25px;
-    background-color: rgba(140, 23, 224, 0.087);
-}
-
-
-/*#btn{
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    font-size: 16px;
-    color: rgb(30, 27, 27);
-    background-color: #3c3c3c;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 50% 50% 0 0;
-}*/
 .jiantou{
-    display:inline-block;
-    margin: 0;
-    width:2vw;
-    margin-left: 50vw;
-    margin-top: 2vh;
+  display:inline-block;
+  margin: 0;
+  width:2vw;
+  margin-left: 50vw;
+  margin-top: 2vh;
 }
-
 #uploadBtn{
-    display: none;
+  display: none;
 }
 h3{
-    width:100%;
-    padding-bottom:10px;
-    border-bottom:2px solid #CCC;
+  width:100%;
+  padding-bottom:10px;
+  border-bottom:2px solid #CCC;
 }
 #close{
-    position:absolute;
-    top:2px;
-    right:2px;
+  position:absolute;
+  top:2px;
+  right:2px;
 }
 #close span{
-    padding:3px 10px;
-    background-color: #999;
-    font-size:20px;
-    color:white;
-    cursor:pointer;
+  padding:3px 10px;
+  background-color: #999;
+  font-size:20px;
+  color:white;
+  cursor:pointer;
 }
 #log{
-    display: none; 
-    width: 400px; 
-    height: 400px; 
-    padding: 30px 40px; 
-    background-color: #F3F5F6; 
-    position: fixed; 
-    top: 70px; 
-    right: 30px;
+  display: none; 
+  width: 400px; 
+  height: 400px; 
+  padding: 30px 40px; 
+  background-color: #F3F5F6; 
+  position: fixed; 
+  top: 70px; 
+  right: 30px;
 }
 .error{
-    float:right;
-    color:red;
-    font-size:1.2em;
-    margin-right:10px
+  float:right;
+  color:red;
+  font-size:1.2em;
+  margin-right:10px
 }
-/*
-图片滑动
-*/
-
 .image-container {
-    position: relative;
-    width: 80vw;
-    height: 60vw;
-    border: 6px solid white;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60vw;
+  height: 50vh;
+  padding: 2vh;
+  margin: 6vh;
+  border: 6px solid white;
 }
-.imgg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: 100%;
-  }
-  /*
-  删了p-img
-  */
-
-  /*new覆盖在上面*/
-  .p-img2 {
-    width: 50%;
-  }
-   
-.slider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 100%;
-    background: rgba(242, 242, 241, 0.3);
-    outline: none;
-    margin: 0;
-    transition: all 0.2s;
-  }
-  .slider:hover {
-    background: rgba(242, 242, 241, 0.1);
-  }
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 6px;
-    height: 600px;
-    background: white;
-    cursor: pointer;
-  }
-  /*
-  .slider-button {
-    pointer-events: none;
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: white;
-    left: calc(50% - 18px);
-    top: calc(50% - 18px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .slider-button::after {
-    content: "";
-    padding: 3px;
-    display: inline-block;
-    border: solid #5d5d5d;
-    border-width: 0 2px 2px 0;
-    transform: rotate(-45deg);
-  }
-  .slider-button::before {
-    content: "";
-    padding: 3px;
-    display: inline-block;
-    border: solid #5d5d5d;
-    border-width: 0 2px 2px 0;
-    transform: rotate(135deg);
-  }*/
+img {
+  max-width: 100%;
+  border-style: none;
+}
+.p-img {
+  width: 50%;
+  height: 100%;
+  margin-left: -6px;
+}
 /*
-轮播图
+选择功能
 */
-* {
-    margin: 0;
-    padding: 0;
+#myTab{
+  margin-top: 5vh;
 }
-    
-/* 去除a标签的下划线 */
- a {
-   text-decoration: none;
-  }
- /*轮播图边框的控制*/
-    .con {
-    position: relative;
-     width: 55vw;
-   height: 50vh;
-    margin: 5vh auto 0 auto;
-     box-shadow: 0 0 5px mediumpurple;
-     overflow: hidden;
-    
-     }
-    
-     .wrap {
-     position: relative;
-     width: 5000vw;
-    height: 100vh;
-     z-index: 1;
+/*
+提交图片
+*/
+.ui_button {
+  position: relative;
+  text-align: center;
+	width: 20vw;
+  left: 30vw;
+	background-color: #af4ca337;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius:4px;
+	cursor: pointer;
 }
-    
- /*.con.wrap img {
-                float: left;
-                width: 1px;
-                height: 400px;
-          }*/
-    
- .con .buttons {
-  position: absolute;
- right: 35%;
- bottom: 15px;
- width: 200px;
- z-index: 2; }
-    
-/* .con .buttons {
-                position: relative;
-                right: -3vw;
-                bottom: 2vh;
-                width: 2vw;
-                height: -1vh;
-                z-index: 2;
-          }*/
-    
- .con .buttons span {
-margin-left: 5px;
-display: inline-block;
- width: 20px;
- height: 20px;
-line-height: 20px;
-border-radius: 50px;
- background-color: mediumslateblue;
-   color: white;
-cursor: pointer;
-   text-align: center;
- }
-    
- .con .buttons span.on {
-    background-color: red;
-     }
-    
- .con .arrow {
-    position: absolute;
- top: 22vh;
-  color: mediumpurple;
-    padding: 0 1vh;
- border-radius: 50%;
- font-size: 50px;
-  z-index: 2;
- }
-    
-.con .arrow_left {
-  position: absolute;
-    left: 52vw;
- }
-    
- .cont .arrow_right {
- right: 10000px;
+.ui_button:hover {
+	background-color: #af4ca367;
 }
-    
- .con .arrow:hover {
- background-color: rgba(0, 0, 0, 0.3);
-  }
+input[type=submit] {
+  position: relative;
+	width: 20vw;
+  left: 35vw;
+	background-color: #af4ca337;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius:4px;
+	cursor: pointer;
+  font-weight: 700;
+}
+input[type=submit]:hover {
+	background-color: #af4ca367;
+}
+
+
