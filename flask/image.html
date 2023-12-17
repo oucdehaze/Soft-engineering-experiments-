@@ -511,22 +511,37 @@
             if (document.getElementById('a').value == 1) {
                 $(".nav-tabs>li").eq(0).addClass("active");
                 $(".nav-tabs>li").eq(1).removeClass("active");
+                $(".nav-tabs>li").eq(2).removeClass("active");
                 $("#choice1").addClass("tab-pane fade in active");
                 $("#choice2").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                $("#choice3").removeClass("tab-pane fade in active").addClass("tab-pane fade");
                 // $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
             }
             else if (document.getElementById('b').value == 2) {
                 $(".nav-tabs>li").eq(1).addClass("active");
                 $(".nav-tabs>li").eq(0).removeClass("active");
+                $(".nav-tabs>li").eq(2).removeClass("active");
                 $("#choice2").addClass("tab-pane fade in active");
+                $("#choice1").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                $("#choice3").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                // $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
+            }
+            else if (document.getElementById('b').value == 3) {
+                $(".nav-tabs>li").eq(2).addClass("active");
+                $(".nav-tabs>li").eq(0).removeClass("active");
+                $(".nav-tabs>li").eq(1).removeClass("active");
+                $("#choice3").addClass("tab-pane fade in active");
+                $("#choice2").removeClass("tab-pane fade in active").addClass("tab-pane fade");
                 $("#choice1").removeClass("tab-pane fade in active").addClass("tab-pane fade");
                 // $("html,body").animate({ scrollTop: $("#title").offset().top }, 0);
             }
             else {
                 $(".nav-tabs>li").eq(0).addClass("active");
                 $(".nav-tabs>li").eq(1).removeClass("active");
+                $(".nav-tabs>li").eq(2).removeClass("active");
                 $("#choice1").addClass("tab-pane fade in active");
                 $("#choice2").removeClass("tab-pane fade in active").addClass("tab-pane fade");
+                $("#choice3").removeClass("tab-pane fade in active").addClass("tab-pane fade");
             }
         });
         function goToPage() {
@@ -543,6 +558,8 @@
                 var Imgsrc1 = document.getElementById("2");
                 var Imgrain = document.getElementById("3");
                 var Imgrain1 = document.getElementById("4");
+                var Imgrain = document.getElementById("5");
+                var Imgrain1 = document.getElementById("6");
                 $.ajax({
                     url: "https://840y096t32.goho.co/dehaze",
                     data: formFile,
@@ -557,6 +574,8 @@
                         rain = JSON.stringify(data.rain);
                         rain1 = JSON.stringify(data.rain1);
                         src2=JSON.stringify(data.src2);
+                        raining=JSON.stringify(data.raining);
+                        raining1=JSON.stringify(data.raining1);
                         alert("上传成功!");
                         location.reload();  
                     },
@@ -577,6 +596,8 @@
                 var Imgsrc1 = document.getElementById("2");
                 var Imgrain = document.getElementById("3");
                 var Imgrain1 = document.getElementById("4");
+                var Imgrain = document.getElementById("5");
+                var Imgrain1 = document.getElementById("6");
                 $.ajax({
                     url: "https://840y096t32.goho.co/derain",
                     data: formFile,
@@ -591,6 +612,46 @@
                         rain = JSON.stringify(data.rain);
                         rain1 = JSON.stringify(data.rain1);
                         src2=JSON.stringify(data.src2);
+                        raining=JSON.stringify(data.raining);
+                        raining1=JSON.stringify(data.raining1);
+                        alert("上传成功!");
+                        location.reload();  
+                    },
+                    error:function()
+                    {
+                        alert("上传失败，请重试!");
+                    }
+                })
+            })
+        })
+        $(function () {
+            $("#update-value-form3").click(function () {
+                event.preventDefault();  // 阻止表单的默认提交行为
+                var fileObj = document.getElementById("xFile2").files[0];
+                var formFile = new FormData();
+                formFile.append("file", fileObj); //加入文件对象
+                var Imgsrc = document.getElementById("1");
+                var Imgsrc1 = document.getElementById("2");
+                var Imgrain = document.getElementById("3");
+                var Imgrain1 = document.getElementById("4");
+                var Imgrain = document.getElementById("5");
+                var Imgrain1 = document.getElementById("6");
+                $.ajax({
+                    url: "https://840y096t32.goho.co/deraining",
+                    data: formFile,
+                    type: "post",
+                    dataType: "json",
+                    cache: false,//上传文件无需缓存
+                    processData: false,//用于对data参数进行序列化处理 这里必须false
+                    contentType: false, //必须
+                    success: function (data) {
+                        src = JSON.stringify(data.src);
+                        src1 = JSON.stringify(data.src1);
+                        rain = JSON.stringify(data.rain);
+                        rain1 = JSON.stringify(data.rain1);
+                        src2=JSON.stringify(data.src2);
+                        raining=JSON.stringify(data.raining);
+                        raining1=JSON.stringify(data.raining1);
                         alert("上传成功!");
                         location.reload();  
                     },
@@ -615,7 +676,10 @@
                 <a style="font-size: large;" href="#choice1" data-toggle="tab">图片去雾</a>
             </li>
             <li>
-                <a style="font-size: large;" href="#choice2" data-toggle="tab">图片去雨</a>
+                <a style="font-size: large;" href="#choice2" data-toggle="tab">图片去雨珠</a>
+            </li>
+            <li>
+                <a style="font-size: large;" href="#choice3" data-toggle="tab">图片去雨痕</a>
             </li>
         </ul>
         <div id="myTabContent" class="tab-content">
@@ -644,6 +708,21 @@
                         <label class="ui_button ui_button_primary" for="xFile1">选择文件</label>
                         <input type="file" name="file" id="xFile1" style="position:absolute;clip:rect(0 0 0 0);" />
                         <input id="update-value-form2" type="submit" value="上传" class="button-new" />
+                        <input type="hidden" value={{src2}} id='b'>
+                    </div>
+                </form>
+            </div>
+
+            <div id="choice3">
+                <div class="image-container">
+                    <img id="6" src={{raining1}} alt="图片2" class="p-img"><!--class被修改了，可能影响后端-->
+                    <img id="5" src={{raining}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                </div>
+                <form action="https://840y096t32.goho.co/deraining" enctype='multipart/form-data' method='POST'>
+                    <div class="juzhong">
+                        <label class="ui_button ui_button_primary" for="xFile2">选择文件</label>
+                        <input type="file" name="file" id="xFile2" style="position:absolute;clip:rect(0 0 0 0);" />
+                        <input id="update-value-form3" type="submit" value="上传" class="button-new" />
                         <input type="hidden" value={{src2}} id='b'>
                     </div>
                 </form>

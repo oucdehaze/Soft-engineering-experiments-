@@ -3,6 +3,8 @@ from pyexpat import model
 import torch
 import torch.nn as nn
 import torchvision
+import torch.nn.functional as F
+import torchvision.transforms.functional as TF
 import torch.backends.cudnn as cudnn
 import torch.optim
 import os
@@ -25,6 +27,11 @@ import argparse
 from models import *
 #Metrics lib
 from metrics import calc_psnr, calc_ssim
+from runpy import run_path
+from skimage import img_as_ubyte
+from collections import OrderedDict
+from natsort import natsorted
+import cv2
 
 # flask修改尝试
 app=Flask(__name__)
@@ -39,21 +46,23 @@ src1 = 'https://840y096t32.goho.co/static/image/1.jpg'
 src2 = 0
 rain='https://840y096t32.goho.co/static/image/2-2.jpg'
 rain1='https://840y096t32.goho.co/static/image/1-2.jpg'
+raining = 'https://840y096t32.goho.co/static/image/2-3.jpg'
+raining1='https://840y096t32.goho.co/static/image/1-3.jpg'
 flag=0
 
 #根据需要修改这里的内容
 @app.route('/')
 def index():
     #在登陆设置初值，登陆时flag=1
-    global src,src1,src2,rain,rain1,flag
+    global src,src1,src2,rain,rain1,flag,raining,raining1
     if flag==0:
       flag=1
-      return render_template("image.html",src='https://840y096t32.goho.co/static/image/2.jpg',src1='https://840y096t32.goho.co/static/image/1.jpg',src2 = 0,rain='https://840y096t32.goho.co/static/image/2-2.jpg',rain1='https://840y096t32.goho.co/static/image/1-2.jpg')
-    return render_template("image.html",src=src,src1=src1,src2 = src2,rain=rain,rain1=rain1)
+      return render_template("image.html",src='https://840y096t32.goho.co/static/image/2.jpg',src1='https://840y096t32.goho.co/static/image/1.jpg',src2 = 0,rain='https://840y096t32.goho.co/static/image/2-2.jpg',rain1='https://840y096t32.goho.co/static/image/1-2.jpg',raining='https://840y096t32.goho.co/static/image/2-3.jpg',raining1='https://840y096t32.goho.co/static/image/1-3.jpg')
+    return render_template("image.html",src=src,src1=src1,src2 = src2,rain=rain,rain1=rain1,raining=raining,raining1=raining1)
 
 @app.route('/dehaze',methods=['POST'])
 def dehaze_image():
-  global src,src1,src2,rain,rain1
+  global src,src1,src2,rain,rain1,raining,raining1
   #data_haze=request.form['data_haze']
   #这里接收前端传来的文件路径
   #需要思考上传的代码逻辑 参考文件：http://t.csdnimg.cn/L2WaR
@@ -101,12 +110,13 @@ def dehaze_image():
   src='https://840y096t32.goho.co/static/image/test.jpg'
   src1='https://840y096t32.goho.co/static/image/put.jpg'
   src2=1
-  data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"src2":1}
+  data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"raining":raining,"raining1":raining1,"src2":1}
   return jsonify(data)
 
+##### 还需要修改保存图片的逻辑
 @app.route('/derain',methods=['POST'])
 def derain():
-  global src,src1,src2,rain,rain1
+  global src,src1,src2,rain,rain1,raining,raining1
   rain_path = request.files['file']
 
   model = Generator().cpu()
@@ -127,8 +137,61 @@ def derain():
   rain='https://840y096t32.goho.co/static/image/test1.jpg'
   rain1='https://840y096t32.goho.co/static/image/put1.jpg'
   src2=2
-  data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"src2":2}
+  data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"raining":raining,"raining1":raining1,"src2":2}
   return jsonify(data)
+
+parser = argparse.ArgumentParser(description='Demo MPRNet')
+# parser.add_argument('--task', required=True, type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
+
+args = parser.parse_args()
+
+def save_img(filepath, img):
+    cv2.imwrite(filepath,cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
+
+def load_checkpoint(model, weights):
+    checkpoint = torch.load(weights, map_location=torch.device('cpu'))
+    try:
+        model.load_state_dict(checkpoint["state_dict"])
+    except:
+        state_dict = checkpoint["state_dict"]
+        new_state_dict = OrderedDict()
+        for k, v in state_dict.items():
+            name = k[7:] # remove `module.`
+            new_state_dict[name] = v
+        model.load_state_dict(new_state_dict)
+
+@app.route('/deraining',methods=['POST'])
+def deraining():
+    global src,src1,src2,rain,rain1,flag,raining,raining1
+    rain_path = request.files['file']
+
+    load_file = run_path("MPRNet.py")
+    model = load_file['MPRNet']()
+    model.cpu()
+
+    #model = Generator().cpu()
+    weights = './snapshot/model_deraining.pth'
+    load_checkpoint(model, weights)
+    model.eval()
+    #model.load_state_dict(torch.load('./snapshot/model_deraining.pth', map_location=torch.device('cpu')))
+
+    data_rain = Image.open(rain_path).convert('RGB')
+    data_rain = (np.asarray(data_rain)/255.0)
+
+    data_rain = torch.from_numpy(data_rain).float()
+    data_rain = data_rain.permute(2,0,1)
+    data_rain = data_rain.unsqueeze(0)
+
+    out = model(data_rain)[-1]    
+    
+    torchvision.utils.save_image(data_rain, "static/image/put2.jpg")
+    torchvision.utils.save_image(out, "static/image/test2.jpg")
+
+    raining='https://840y096t32.goho.co/static/image/test2.jpg'
+    raining1='https://840y096t32.goho.co/static/image/put2.jpg'
+    src2=3
+    data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"raining":raining,"raining1":raining1,"src2":3}
+    return jsonify(data)
   
 if __name__=="__main__":
     #这里学习怎么自己的电脑变为服务器并发布自己的项目 参考文章：https://blog.csdn.net/u014252871/article/details/70569889?fromshare=blogdetail
