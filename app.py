@@ -23,8 +23,7 @@ from datetime import timedelta
 # from obs import ObsClient
 import argparse
 #Models lib
-from models import *
-from jpype import *  
+from models import * 
 #Metrics lib
 from metrics import calc_psnr, calc_ssim
 
@@ -82,7 +81,7 @@ rain1='/static/image/1-2.jpg'
 
 # obsClient = ObsClient(
 #  access_key_id='USWVGG2I9WLFIO7PMFSX',#刚刚下载csv文件里面的Access Key Id
-# secret_access_key='SrXpHa7y6AAANSyumAtuebyrVl37cNeO1Spnqoxm',#刚刚下载csv文件里面的Secret Access Key
+# secret_access_key='SrXpHa7y6AAANSyumAtuebyrVl37cNeO1Spnqoxm',#刚刚下载csv文件里面的Secret Access Ke
 #    server='https://ouc-picture-repair.obs.cn-east-3.myhuaweicloud.com'#这里的访问域名就是我们在桶的基本信息那里记下的东西
 #)
 
@@ -90,15 +89,32 @@ rain1='/static/image/1-2.jpg'
 @app.route('/')
 def index():
    return render_template("login.html")
+@app.route('/register',methods=['GET', 'POST'])
+def register():
+  if request.method == 'POST':
+      username = request.form['username']
+      password = request.form['password']
+      print(username)
+      print(password)
+      db = pymysql.connect(host='localhost',
+                           user='root',
+                           password='155955',
+                           database='picture')
+      cursor = db.cursor()
+      cursor.execute("insert into Staffs values( '%s',  '%s')" % (username, password))
+      db.commit()
+      db.rollback()
+      return render_template("login.html")
+   
 
 @app.route('/image',methods=['GET', 'POST'])
 def image():
    if request.method == 'POST':
-      username = str(request.values.get("username"))
-      password = str(request.values.get("password"))
+      username = request.form['username']
+      password = request.form['password']
       print(username)
       print(password)
-      # sql = 'SELECT password FROM Staffs WHERE username = %s'
+      # sql = 'SELECT password FROM Staffs WHERE usernpoame = %s'
       # helper = MysqlHelper(user='root',passwd='155955',db='picture')
       # result = helper.cha_all(sql,[username])
       db = pymysql.connect(host='localhost',
@@ -111,12 +127,15 @@ def image():
         singleData = cursor.fetchone()
         if singleData is None:
           break
+        print(singleData[0])
         print(singleData[1])
-        print(singleData[2])
-        if singleData[1]==username and singleData[2]==password:
+        if singleData[0]==username and singleData[1]==password:
           print("true")
+          db.rollback()
           return render_template("image.html",src='/static/image/1.png',src1='/static/image/2.png',src2 = 0,rain='/static/image/1-2.jpg',rain1='/static/image/2-2.jpg')       
-        return render_template("error.html")  
+      return render_template("error.html")  
+       
+
    #vkjhfghfxc.uhgidiu
 
 @app.route('/dehaze',methods=['POST'])
