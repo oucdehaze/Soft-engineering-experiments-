@@ -32,15 +32,11 @@ from skimage import img_as_ubyte
 from collections import OrderedDict
 from natsort import natsorted
 import cv2
+import pymysql
 
 # flask修改尝试
 app=Flask(__name__)
 
-# obsClient = ObsClient(
-#  access_key_id='USWVGG2I9WLFIO7PMFSX',#刚刚下载csv文件里面的Access Key Id
-# secret_access_key='SrXpHa7y6AAANSyumAtuebyrVl37cNeO1Spnqoxm',#刚刚下载csv文件里面的Secret Access Key
-#    server='https://ouc-picture-repair.obs.cn-east-3.myhuaweicloud.com'#这里的访问域名就是我们在桶的基本信息那里记下的东西
-#)
 src = 'https://840y096t32.goho.co/static/image/2.jpg'
 src1 = 'https://840y096t32.goho.co/static/image/1.jpg'
 src2 = 0
@@ -52,13 +48,72 @@ flag=0
 
 #根据需要修改这里的内容
 @app.route('/')
+def login():
+   global src,src1,src2,rain,rain1,flag,raining,raining1
+   flag=0
+   return render_template("login.html")
+
+@app.route('/register',methods=['GET', 'POST'])
+def register():
+  global src,src1,src2,rain,rain1,flag,raining,raining1
+  if request.method == 'POST':
+      username = request.form['username']
+      password = request.form['password']
+      print(username)
+      print(password)
+      db = pymysql.connect(host='localhost',
+                           user='root',
+                           password='7163865',
+                           database='picture')
+      cursor = db.cursor()
+      cursor.execute("insert into Staffs values( '%s',  '%s')" % (username, password))
+      db.commit()
+      db.rollback()
+      return render_template("login.html")
+
+#根据需要修改这里的内容
+# @app.route('/')
+# def index():
+@app.route('/image',methods=['GET', 'POST'])
 def index():
+  global src,src1,src2,rain,rain1,flag,raining,raining1
+  #data={"src":src,"src1":src1,"rain":rain,"rain1":rain1,"raining":raining,"raining1":raining1,"src2":src2}
+  if flag==0:
+    username = request.form['username']
+    password = request.form['password']
+    print(username)
+    print(password)
+    # sql = 'SELECT password FROM Staffs WHERE usernpoame = %s'
+    # helper = MysqlHelper(user='root',passwd='155955',db='picture')
+    # result = helper.cha_all(sql,[username])
+    db = pymysql.connect(host='localhost',
+                   user='root',
+                   password='7163865',
+                   database='picture')
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM Staffs")
+    while True:
+      singleData = cursor.fetchone()
+      if singleData is None:
+        break
+      print(singleData[0])
+      print(singleData[1])
+      if singleData[0]==username and singleData[1]==password and flag==0:
+        print("true")
+        flag=1
+        db.rollback()
+        return render_template("image.html",src='https://840y096t32.goho.co/static/image/2.jpg',src1='https://840y096t32.goho.co/static/image/1.jpg',src2 = 0,rain='https://840y096t32.goho.co/static/image/2-2.jpg',rain1='https://840y096t32.goho.co/static/image/1-2.jpg',raining='https://840y096t32.goho.co/static/image/2-3.jpg',raining1='https://840y096t32.goho.co/static/image/1-3.jpg')
+    else:
+      return render_template("error.html") 
+  else:
+     return render_template("image.html",src=src,src1=src1,src2 = src2,rain=rain,rain1=rain1,raining=raining,raining1=raining1)
+
     #在登陆设置初值，登陆时flag=1
-    global src,src1,src2,rain,rain1,flag,raining,raining1
-    if flag==0:
-      flag=1
-      return render_template("image.html",src='https://840y096t32.goho.co/static/image/2.jpg',src1='https://840y096t32.goho.co/static/image/1.jpg',src2 = 0,rain='https://840y096t32.goho.co/static/image/2-2.jpg',rain1='https://840y096t32.goho.co/static/image/1-2.jpg',raining='https://840y096t32.goho.co/static/image/2-3.jpg',raining1='https://840y096t32.goho.co/static/image/1-3.jpg')
-    return render_template("image.html",src=src,src1=src1,src2 = src2,rain=rain,rain1=rain1,raining=raining,raining1=raining1)
+    # global src,src1,src2,rain,rain1,flag,raining,raining1
+    # if flag==0:
+    #   flag=1
+    #   return render_template("image.html",src='https://840y096t32.goho.co/static/image/2.jpg',src1='https://840y096t32.goho.co/static/image/1.jpg',src2 = 0,rain='https://840y096t32.goho.co/static/image/2-2.jpg',rain1='https://840y096t32.goho.co/static/image/1-2.jpg',raining='https://840y096t32.goho.co/static/image/2-3.jpg',raining1='https://840y096t32.goho.co/static/image/1-3.jpg')
+    # return render_template("image.html",src=src,src1=src1,src2 = src2,rain=rain,rain1=rain1,raining=raining,raining1=raining1)
 
 @app.route('/dehaze',methods=['POST'])
 def dehaze_image():
