@@ -233,7 +233,7 @@
     .image-container {
         position: relative;
         display: flex;
-        justify-content: center;
+        justify-content:center;
         left: 50%;
         transform: translate(-50%);
         width: 60vw;
@@ -361,7 +361,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="js" href="js.js">
-    <script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+    <!-- <script type="text/javascript" src="jquery-3.0.0.min.js"></script> -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -386,12 +387,12 @@
                         <!-- 点击后跳转登录界面 -->
                         <li class="nav-item">
                             <button class="login-button"
-                                onclick="document.getElementById('log').style.display='block'">登录</button>
+                                onclick="document.getElementById('log').style.display='block'">欢迎</button>
                         </li>
                         <!-- 注册 -->
                         <li class="nav-item">
                             <button class="register-button"
-                                onclick="document.getElementById('res').style.display='block'">注册</button>
+                                onclick="document.getElementById('res').style.display='block'">使用</button>
                         </li>
                     </ul>
                 </div>
@@ -405,9 +406,9 @@
         </div>
         <div class="mytext">
             <p class="headertext" style="font-size: 2.5vw;font-family: STXingKai; color: rgba(149, 49, 212, 0.703);">
-                去雾功能能够加强对比、增大反差、提高色彩饱和度，强调图片层次感，有效解决照片中的起雾现象。</p>
+                本网站免费提供图片去雾、去雨功能</p>
             <p class="headertext" style="font-size: 2.5vw;font-family: STXingKai; color: rgba(149, 49, 212, 0.703);">
-            </p>
+                提高图片清晰度，让您即刻获取高清图像</p>
         </div>
         <div class="footer">
             <!-- <img src="static/image/jiantou.png" alt="箭头" class="jiantou"> -->
@@ -416,8 +417,8 @@
     </div>
 
     <!-- 2效果展示-->
-    <!-- <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
-    <script src="js/jquery-3.4.1.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <!-- <script src="js/jquery-3.4.1.js"></script> -->
     <!-- <script src="js/jq-load.js"></script> -->
     <script type="text/javascript">
         $().ready(function () {
@@ -528,7 +529,6 @@
                         raining1 = JSON.stringify(data.raining1);
                         alert("上传成功!");
                         update2();
-                        //location.reload();
                     },
                     error: function () {
                         alert("上传失败，请重试!");
@@ -564,9 +564,8 @@
                         src2 = JSON.stringify(data.src2);
                         raining = JSON.stringify(data.raining);
                         raining1 = JSON.stringify(data.raining1);
-                        alert("上传成功!"); 
+                        alert("上传成功!");
                         update3();
-                        //location.reload();
                     },
                     error: function () {
                         alert("上传失败，请重试!");
@@ -575,13 +574,13 @@
             })
         })
         function update() {
-            $("#choice1").load(location.href+" #choice1")
+            $("#imgc").load(location.href +" #imgc")
         }
         function update2() {
-            $("#choice2").load(location.href+" #choice2")
+            $("#imgc2").load(location.href+" #imgc2")
         }
         function update3() {
-            $("#choice3").load(location.href+" #choice3")
+            $("#imgc3").load(location.href+" #imgc3")
         }
     </script>
     <!--功能实现-->
@@ -607,9 +606,11 @@
         </ul>
         <div id="myTabContent" class="tab-content">
             <div id="choice1">
-                <div class="image-container">
-                    <img id="2" src={{src1}} alt="图片2" class="p-img"><!--!!!!!!!!!!!!class被修改了，可能影响后端-->
-                    <img id="1" src={{src}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                <div id="imgc">
+                    <div class="image-container">
+                        <img src={{src1}} alt="图片2" class="p-img"><!--!!!!!!!!!!!!class被修改了，可能影响后端-->
+                        <img src={{src}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                    </div>
                 </div>
                 <form action="https://840y096t32.goho.co/dehaze" enctype='multipart/form-data' method='POST'>
                     <div class="juzhong">
@@ -622,9 +623,11 @@
             </div>
 
             <div id="choice2">
-                <div class="image-container">
-                    <img id="4" src={{rain1}} alt="图片2" class="p-img"><!--class被修改了，可能影响后端-->
-                    <img id="3" src={{rain}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                <div id="imgc2">
+                    <div class="image-container">
+                        <img src={{rain1}} alt="图片2" class="p-img"><!--class被修改了，可能影响后端-->
+                        <img src={{rain}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                    </div>
                 </div>
                 <form action="https://840y096t32.goho.co/derain" enctype='multipart/form-data' method='POST'>
                     <div class="juzhong">
@@ -637,9 +640,11 @@
             </div>
 
             <div id="choice3">
-                <div class="image-container">
-                    <img id="6" src={{raining1}} alt="图片2" class="p-img"><!--class被修改了，可能影响后端-->
-                    <img id="5" src={{raining}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                <div id="imgc3">
+                    <div class="image-container">
+                        <img src={{raining1}} alt="图片2" class="p-img"><!--class被修改了，可能影响后端-->
+                        <img src={{raining}} alt="图片1" class="p-img"><!--new，class也被修改了-->
+                    </div>
                 </div>
                 <form action="https://840y096t32.goho.co/deraining" enctype='multipart/form-data' method='POST'>
                     <div class="juzhong">
